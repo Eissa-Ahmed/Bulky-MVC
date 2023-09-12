@@ -1,7 +1,15 @@
+using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Connection Server
+var ConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(ConnectionString));
+#endregion
 
 var app = builder.Build();
 
@@ -19,6 +27,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default1",
+    pattern: "p",
+    defaults: new { controller = "Home", action = "Privacy" });
+
+
 
 app.MapControllerRoute(
     name: "default",
