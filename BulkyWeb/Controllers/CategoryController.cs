@@ -38,6 +38,7 @@ namespace BulkyWeb.Controllers
             {
                 await dbContext.Categories.AddAsync(model);
                 await dbContext.SaveChangesAsync();
+                TempData["Success"] = "Category Is Created !";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -55,7 +56,32 @@ namespace BulkyWeb.Controllers
 
             dbContext.Categories.Remove(item);
             await dbContext.SaveChangesAsync();
+            TempData["Success"] = "Category Is Deleted !";
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+            var item = dbContext.Categories.Find(id);
+            if (item != null)
+                return View(item);
+
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                /*var item = dbContext.Categories.Find(model.Id);*/
+                if (model != null)
+                {
+                     dbContext.Categories.Update(model);
+                    await dbContext.SaveChangesAsync();
+                    TempData["Success"] = "Category Is Updated !";
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(model);
         }
     }
 }

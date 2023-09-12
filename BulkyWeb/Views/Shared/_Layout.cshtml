@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BulkyWeb.styles.css" asp-append-version="true" />
     <link href="~/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+
 </head>
 <body>
     <header style="height: 50px">
@@ -38,6 +41,7 @@
     <br />
 
     <div class="container">
+        <partial name="Notification">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
