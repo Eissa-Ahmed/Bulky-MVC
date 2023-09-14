@@ -1,4 +1,8 @@
-using BulkyWeb.Data;
+
+
+using Bulky.DAL.Database;
+using Bulky.DAL.Repository;
+using Bulky.DAL.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,10 @@ builder.Services.AddControllersWithViews();
 #region Connection Server
 var ConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(ConnectionString));
+#endregion
+
+#region Dependency Injection
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 #endregion
 
 var app = builder.Build();
@@ -28,15 +36,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
     name: "default1",
     pattern: "p",
-    defaults: new { controller = "Home", action = "Privacy" });
+    defaults: new { controller = "Home", action = "Privacy" });*/
 
 
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

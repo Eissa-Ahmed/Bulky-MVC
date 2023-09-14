@@ -1,0 +1,83 @@
+﻿@model Prouduct
+@{
+    ViewData["Title"] = "Update Product";
+}
+<style>
+    .bdr {
+        border-radius: 5px;
+    }
+
+</style>
+<div class="border p-3 mt-4 bdr">
+    <h2 class="text-primary">Update Product</h2>
+    <br />
+    <form asp-action="Update" method="post">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Name Of Product</label>
+            <input type="text" class="form-control" asp-for="Title">
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input type="text" class="form-control" asp-for="Description" style="height: 150px">
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label asp-for="Author" class="form-label">Author</label>
+                <input type="text" class="form-control" asp-for="Author">
+                <span class="text-danger" asp-validation-for="Author"></span>
+            </div>
+            <div class="mb-3 col-6">
+                <label asp-for="ISBN" class="form-label">ISBN</label>
+                <input type="text" class="form-control" asp-for="ISBN">
+                <span class="text-danger" asp-validation-for="ISBN"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-3">
+                <label asp-for="ListPrice" class="form-label">List Price</label>
+                <input type="text" class="form-control" asp-for="ListPrice">
+                <span class="text-danger" asp-validation-for="ListPrice"></span>
+            </div>
+            <div class="mb-3 col-3">
+                <label asp-for="Price" class="form-label">Price</label>
+                <input type="text" class="form-control" asp-for="Price">
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
+            <div class="mb-3 col-3">
+                <label asp-for="Price50" class="form-label">Price50</label>
+                <input type="text" class="form-control" asp-for="Price50">
+                <span class="text-danger" asp-validation-for="Price50"></span>
+            </div>
+            <div class="mb-3 col-3">
+                <label asp-for="Price100" class="form-label">Price100</label>
+                <input type="text" class="form-control" asp-for="Price100">
+                <span class="text-danger" asp-validation-for="Price100"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Category Id</label>
+            <input type="number" class="form-control" asp-for="CategoryId">
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary form-control">Submit</button>
+            </div>
+            <div class="col-6">
+                <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-secondary border form-control">Back Home</a>
+            </div>
+        </div>
+        <br />
+
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
