@@ -29,10 +29,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost()]
         public IActionResult Create(Prouduct model)
         {
-            /*if (model.Name == model.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("", "Name Equal Display Order!");
-            }*/
             if (ModelState.IsValid)
             {
                 unitOfWork.ProductRepo.Add(model);
